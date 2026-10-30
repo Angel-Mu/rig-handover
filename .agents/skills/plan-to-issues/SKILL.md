@@ -15,7 +15,8 @@ in a shell this agent can run.
    One issue per unit of work.
 3. **Stop and show the table to the human.** Publish nothing until they approve it.
 4. Ask the human what every issue here must carry (fields, labels, wording), unless it is
-   already written down in this session or in the repo.
+   already written down in this session or in the repo. In this repo it is: see
+   [What every issue carries](#what-every-issue-carries).
 5. Create each issue in dependency order, so blocked-by can cite real numbers:
 
    ```sh
@@ -29,6 +30,30 @@ Closing one, with the closing comment from AGENTS.md:
 ```sh
 gh issue close <n> -c "<closing comment>"
 ```
+
+## What every issue carries
+
+Approved by the human at the morning-digest split (2026-10-30). The reviewer sorts by the first
+line and the label, so both are exact.
+
+```md
+Source: plan.md § <n>
+
+## Scope
+<the plan's words for this unit, plus any reading of an unclear point the human approved>
+
+## Done when
+<the plan's "Done when", checkable>
+
+## Blocked by
+<#n, … or —; "(needs #n merged for …)" when it can start earlier than it can finish>
+```
+
+- Label: `plan:<plan>` from the plan's frontmatter (`gh label create` it once if missing).
+- Title: short, names the unit, no section number.
+- A step that waits on someone outside the repo (a reviewer, a host, a person) gets its own
+  issue. Its "Done when" is their act, not ours: sending a link is not a review. Leave it open
+  with a comment naming what it waits on, and block the next step (clean-up) on it.
 
 ## No `gh`
 
